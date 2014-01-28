@@ -1,8 +1,6 @@
-//var exec = require('cordova/exec');
+var exec = require('cordova/exec');
 
-
-// module.exports = {
-var spinnerDialog = {
+module.exports = {
 
 	show : function(title, message) {
         cordova.exec(null, null, 'SpinnerDialog', 'show', [ title, message ]);
