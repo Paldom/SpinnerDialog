@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <plugin xmlns="http://cordova.apache.org/ns/plugins/1.0"
-           id="org.apache.cordova.core.dialogs"
+           id="hu.dpal.phonegap.plugins"
       version="0.1.0">
 
     <name>SpinnerDialog</name>
     
 	<description>
 			PhoneGap waiting dialog plugin with spinner for Android and iOS.
+	</description>
 	<license>MIT</license>
 	<keywords>phonegap,android,ios,spinner,dialog</keywords>
 
