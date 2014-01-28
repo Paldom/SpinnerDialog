@@ -2,7 +2,7 @@
 
 <plugin xmlns="http://cordova.apache.org/ns/plugins/1.0"
            id="hu.dpal.phonegap.plugins.SpinnerDialog"
-      version="0.1.1">
+      version="0.1.2">
 
     <name>SpinnerDialog</name>
     
@@ -32,7 +32,7 @@
 	<platform name="ios">
 	  <config-file target="config.xml" parent="/*">
 		<feature name="SpinnerDialog">
-		  <param name="ios-package" value="SpinnerDialog"/>
+		  <param name="ios-package" value="CDVSpinnerDialog"/>
 		</feature>
 	  </config-file>
 
