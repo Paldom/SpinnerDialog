@@ -8,7 +8,7 @@ module.exports = {
 
 
     hide : function() {
-        cordova.exec(null, null, 'SpinnerDialog', 'hide', []);
+        cordova.exec(null, null, 'SpinnerDialog', 'hide', [ "","" ]);
     }
 
 };
