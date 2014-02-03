@@ -31,24 +31,36 @@ public class SpinnerDialog extends CordovaPlugin {
         	
 			final CordovaInterface cordova = this.cordova;
 			Runnable runnable = new Runnable() {
-				public void run() {		
-					
+			public void run() {		
+
 					SpinnerDialog.this.spinnerDialog = ProgressDialog.show(cordova.getActivity(), title, message, true, true,
 							new DialogInterface.OnCancelListener() {
 								public void onCancel(DialogInterface dialog) {
 									SpinnerDialog.this.spinnerDialog = null;
 								}
 							});
+
+					
+					
 				}
 			};
 			this.cordova.getActivity().runOnUiThread(runnable);
-			
+
         }
         else if (action.equals("hide")) {
-			if (this.spinnerDialog != null) {
-				this.spinnerDialog.dismiss();
-				this.spinnerDialog = null;
-			}
+        	 	
+        	Runnable runnable = new Runnable() {
+    			public void run() {		
+
+	    				if (SpinnerDialog.this.spinnerDialog != null) {
+	    					SpinnerDialog.this.spinnerDialog.dismiss();
+	    					SpinnerDialog.this.spinnerDialog = null;
+	    				}
+    					
+    				}
+    			};
+    		this.cordova.getActivity().runOnUiThread(runnable);
+        	
         }
 
         callbackContext.success();
