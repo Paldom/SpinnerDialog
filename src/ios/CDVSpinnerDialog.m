@@ -22,10 +22,17 @@
 @synthesize indicator = _indicator;
 @synthesize overlay = _overlay;
 
+-(CGRect)rectForView {
+    if (UIInterfaceOrientationIsLandscape([[UIDevice currentDevice] orientation])) {
+        return CGRectMake( 0.0f, 0.0f, [[UIScreen mainScreen]bounds].size.height, [UIScreen mainScreen].bounds.size.width);
+    }
+    return CGRectMake( 0.0f, 0.0f, [[UIScreen mainScreen]bounds].size.width, [UIScreen mainScreen].bounds.size.height);
+}
+
     
 -(UIView *)overlay {
     if (!_overlay) {
-        _overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        _overlay = [[UIView alloc] initWithFrame:self.rectForView];
         _overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.25];
         _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         _indicator.center = _overlay.center;
