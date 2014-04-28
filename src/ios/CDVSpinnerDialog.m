@@ -1,6 +1,5 @@
 //
 //  CDVSpinnerDialog.m
-//  HelloWorld
 //
 //  Created by Domonkos Pál on 2014.01.27..
 //
@@ -11,25 +10,25 @@
 @interface CDVSpinnerDialog () {
     UIActivityIndicatorView *indicator;
 }
-    
+
 @property (nonatomic, retain) UIActivityIndicatorView *indicator;
 @property (nonatomic, retain) UIView *overlay;
 
 @end
 
 @implementation CDVSpinnerDialog
-    
+
 @synthesize indicator = _indicator;
 @synthesize overlay = _overlay;
 
 -(CGRect)rectForView {
-    if (UIInterfaceOrientationIsLandscape([[UIDevice currentDevice] orientation])) {
+    if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
         return CGRectMake( 0.0f, 0.0f, [[UIScreen mainScreen]bounds].size.height, [UIScreen mainScreen].bounds.size.width);
     }
     return CGRectMake( 0.0f, 0.0f, [[UIScreen mainScreen]bounds].size.width, [UIScreen mainScreen].bounds.size.height);
 }
 
-    
+
 -(UIView *)overlay {
     if (!_overlay) {
         _overlay = [[UIView alloc] initWithFrame:self.rectForView];
@@ -42,18 +41,18 @@
     return _overlay;
 }
 
-    
+
 - (void) show:(CDVInvokedUrlCommand*)command {
     
     
     UIViewController *rootViewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
     
     [rootViewController.view addSubview:self.overlay];
-
+    
     
 }
-    
-    
+
+
 - (void) hide:(CDVInvokedUrlCommand*)command {
     if (_overlay) {
         [self.indicator stopAnimating];
@@ -63,12 +62,10 @@
         _overlay = nil;
     }
 }
-    
+
 #pragma mark - PRIVATE METHODS
- 
-    
+
+
 @end
-
-
 
 
