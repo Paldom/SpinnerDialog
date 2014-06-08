@@ -3,6 +3,14 @@ SpinnerDialog
 
 PhoneGap waiting dialog / progress dialog plugin with spinner for Android and iOS.
 
+Installation:
+
+```cordova plugin add https://github.com/Paldom/SpinnerDialog.git```
+or
+
+```phonegap local plugin add https://github.com/Paldom/SpinnerDialog.git```
+
+
 Usage:
 
     // Show spinner dialog
