@@ -7,7 +7,6 @@ Installation:
 
 ```cordova plugin add https://github.com/Paldom/SpinnerDialog.git```
 or
-
 ```phonegap local plugin add https://github.com/Paldom/SpinnerDialog.git```
 
 
