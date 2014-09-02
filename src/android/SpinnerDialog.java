@@ -10,6 +10,7 @@ import org.json.JSONException;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.widget.ProgressBar;
 
 public class SpinnerDialog extends CordovaPlugin {
 
@@ -31,15 +32,21 @@ public class SpinnerDialog extends CordovaPlugin {
 			Runnable runnable = new Runnable() {
 				public void run() {
 
-					SpinnerDialog.this.spinnerDialogStack.push(ProgressDialog
-							.show(cordova.getActivity(), title, message, true, true,
-									new DialogInterface.OnCancelListener() {
-										public void onCancel(DialogInterface dialog) {
-											while (!SpinnerDialog.this.spinnerDialogStack.empty()) {
-												SpinnerDialog.this.spinnerDialogStack.pop().dismiss();
-											}
-										}
-									}));
+					ProgressDialog dialog = ProgressDialog
+					.show(cordova.getActivity(), title, message, true, true,
+							new DialogInterface.OnCancelListener() {
+								public void onCancel(DialogInterface dialog) {
+									while (!SpinnerDialog.this.spinnerDialogStack.empty()) {
+										SpinnerDialog.this.spinnerDialogStack.pop().dismiss();
+									}
+								}
+							});
+					
+					if (title == null && message == null) {
+						dialog.setContentView(new ProgressBar(cordova.getActivity()));
+					}
+					
+					SpinnerDialog.this.spinnerDialogStack.push(dialog);
 
 				}
 			};
