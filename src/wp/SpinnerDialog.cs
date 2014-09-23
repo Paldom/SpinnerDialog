@@ -1,12 +1,6 @@
-using System;
-using System.Windows;
-using System.Windows.Controls;
-using Microsoft.Devices;
-using System.Runtime.Serialization;
 using Microsoft.Phone.Controls;
-using WPCordovaClassLib.Cordova;
-using WPCordovaClassLib.Cordova.Commands;
-using WPCordovaClassLib.Cordova.JSON;
+using Microsoft.Phone.Shell;
+using System.Windows;
 
 namespace WPCordovaClassLib.Cordova.Commands
 {
@@ -14,7 +8,7 @@ namespace WPCordovaClassLib.Cordova.Commands
     {
 
         private static ProgressIndicator progressIndicator;
-        private static PhoneApplicationPage currentPage;
+        private static PhoneApplicationPage page;
 
         public void show(string options)
         {
@@ -28,29 +22,36 @@ namespace WPCordovaClassLib.Cordova.Commands
                 message = title;
             }
 
-            if (progressIndicator == null)
+            Deployment.Current.Dispatcher.BeginInvoke(() =>
             {
-                progressIndicator = new ProgressIndicator() { IsIndeterminate = true };
-            }
-            progressIndicator.Text = message;
-            progressIndicator.IsVisible = true;
 
-            if (currenPage == null)
-            {
-                currentPage = (Application.Current.RootVisual as PhoneApplicationFrame).Content as PhoneApplicationPage;
-            }
+                if (progressIndicator == null)
+                {
+                    progressIndicator = new ProgressIndicator() { IsIndeterminate = true };
+                }
+                progressIndicator.Text = message;
+                progressIndicator.IsVisible = true;
 
-            SystemTray.SetProgressIndicator(currentPage, progressIndicator);
+                if (page == null)
+                {
+                    page = (Application.Current.RootVisual as PhoneApplicationFrame).Content as PhoneApplicationPage;
+                }
+
+                SystemTray.SetProgressIndicator(page, progressIndicator);
+
+            });
 
         }
 
-        public void hide()
+        public void hide(string options)
         {
 
-            if (progressIndicator != null && currentPage != null)
+            if (progressIndicator != null && page != null)
             {
-                progressIndicator.IsVisible = false;
-                SystemTray.SetProgressIndicator(currentPage, progressIndicator);
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
+                    SystemTray.SetProgressIndicator(page, null);
+                });
             }
 
         }
