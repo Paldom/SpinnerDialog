@@ -2,15 +2,15 @@
 
 <plugin xmlns="http://cordova.apache.org/ns/plugins/1.0"
            id="hu.dpal.phonegap.plugins.SpinnerDialog"
-      version="0.3.0">
+      version="0.9.0">
 
     <name>SpinnerDialog</name>
     
 	<description>
-			PhoneGap waiting dialog plugin with spinner for Android and iOS.
+			PhoneGap waiting dialog (progress indicator) plugin with spinner for Android, iOS and Windows Phone 8.
 	</description>
 	<license>MIT</license>
-	<keywords>phonegap,android,ios,spinner,dialog</keywords>
+	<keywords>phonegap,android,ios,wp8,windows,phone,spinner,dialog,progress,indicator</keywords>
 
 	<js-module src="www/spinner.js" name="SpinnerDialog">
 	  <merges target="window.plugins.spinnerDialog" />
@@ -39,6 +39,17 @@
 	  <header-file src="src/ios/CDVSpinnerDialog.h" />
 	  <source-file src="src/ios/CDVSpinnerDialog.m" />
 	</platform>
+
+  <!-- wp8 -->
+  <platform name="wp8">
+    <config-file target="config.xml" parent="/*">
+      <feature name="SpinnerDialog">
+        <param name="wp-package" value="SpinnerDialog"/>
+      </feature>
+    </config-file>
+    
+    <source-file src="src/wp/SpinnerDialog.cs" />
+  </platform>
 	
 </plugin>
 
