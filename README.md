@@ -1,7 +1,7 @@
 SpinnerDialog
 =============
 
-PhoneGap waiting dialog / progress dialog plugin with spinner for Android and iOS.
+PhoneGap waiting dialog / progress dialog plugin with spinner for Android, iOS and Windows Phone 8.
 
 Installation:
 
@@ -15,8 +15,11 @@ Usage:
     // Show spinner dialog
     window.plugins.spinnerDialog.show();
     
-    // Show spinner dialog with message (Android only)
+    // Show spinner dialog with title and/or message (Android only)
     window.plugins.spinnerDialog.show("title","message");
+    
+    // Show spinner dialog with message (WP8 only)
+    window.plugins.spinnerDialog.show(null, "message");
     
     // Hide spinner dialog
     window.plugins.spinnerDialog.hide();
