@@ -27,20 +27,23 @@ public class SpinnerDialog extends CordovaPlugin {
 					.getString(0);
 			final String message = args.getString(1) == "null" ? null : args
 					.getString(1);
+            final boolean isFixed = args.getBoolean(2);
 
 			final CordovaInterface cordova = this.cordova;
 			Runnable runnable = new Runnable() {
 				public void run() {
-
+					
+					DialogInterface.OnCancelListener onCancelListener = isFixed ? null : new DialogInterface.OnCancelListener() {
+						public void onCancel(DialogInterface dialog) {
+							while (!SpinnerDialog.this.spinnerDialogStack.empty()) {
+								SpinnerDialog.this.spinnerDialogStack.pop().dismiss();
+							}
+						}
+					};
+					
 					ProgressDialog dialog = ProgressDialog
-					.show(cordova.getActivity(), title, message, true, true,
-							new DialogInterface.OnCancelListener() {
-								public void onCancel(DialogInterface dialog) {
-									while (!SpinnerDialog.this.spinnerDialogStack.empty()) {
-										SpinnerDialog.this.spinnerDialogStack.pop().dismiss();
-									}
-								}
-							});
+					.show(cordova.getActivity(), title, message, true, true, onCancelListener);
+					dialog.setCancelable(!isFixed);
 					
 					if (title == null && message == null) {
 						dialog.setContentView(new ProgressBar(cordova.getActivity()));
