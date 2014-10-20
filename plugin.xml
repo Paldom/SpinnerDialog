@@ -15,7 +15,6 @@
 	<js-module src="www/spinner.js" name="SpinnerDialog">
 	  <merges target="window.plugins.spinnerDialog" />
 	</js-module>
-	
 	<!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
@@ -25,6 +24,7 @@
         </config-file>
         
         <source-file src="src/android/SpinnerDialog.java" target-dir="src/hu/dpal/phonegap/plugins" />
+        <source-file src="src/android/CallbackProgressDialog.java" target-dir="src/hu/dpal/phonegap/plugins" />
         
     </platform>
 
