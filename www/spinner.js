@@ -2,13 +2,16 @@ var exec = require('cordova/exec');
 
 module.exports = {
 
-	show : function(title, message, isFixed) {
-        cordova.exec(null, null, 'SpinnerDialog', 'show', [ title, message, !!isFixed ]);
+	show : function(title, message, cancelCallback) {
+        if (cancelCallback == true && typeof cancelCallback !== "function") {
+            cancelCallback = function () {};  
+        }
+        cordova.exec(cancelCallback, null, 'SpinnerDialog', 'show', [ title, message, !!cancelCallback ]);
     },
 
 
-    hide : function() {
-        cordova.exec(null, null, 'SpinnerDialog', 'hide', [ "","" ]);
+    hide : function(success, fail) {
+        cordova.exec(success, fail, 'SpinnerDialog', 'hide', [ "","" ]);
     }
 
 };
