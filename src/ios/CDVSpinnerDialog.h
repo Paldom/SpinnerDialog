@@ -1,6 +1,5 @@
 //
 //  CDVSpinnerDialog.h
-//  HelloWorld
 //
 //  Created by Domonkos Pál on 2014.01.27..
 //
