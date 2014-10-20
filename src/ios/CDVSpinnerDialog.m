@@ -92,8 +92,10 @@
     if (_overlay) {
         [self.indicator stopAnimating];
         [self.indicator removeFromSuperview];
+        [self.messageView removeFromSuperview];
         [self.overlay removeFromSuperview];
         _indicator = nil;
+        _messageView = nil;
         _overlay = nil;
     }
 }
