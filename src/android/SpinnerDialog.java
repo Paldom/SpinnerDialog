@@ -20,7 +20,7 @@ public class SpinnerDialog extends CordovaPlugin {
 	}
 
 	public boolean execute(String action, JSONArray args,
-			CallbackContext callbackContext) throws JSONException {
+			final CallbackContext callbackContext) throws JSONException {
 		if (action.equals("show")) {
 
 			final String title = args.getString(0) == "null" ? null : args
@@ -28,22 +28,28 @@ public class SpinnerDialog extends CordovaPlugin {
 			final String message = args.getString(1) == "null" ? null : args
 					.getString(1);
             final boolean isFixed = args.getBoolean(2);
-
+                
 			final CordovaInterface cordova = this.cordova;
 			Runnable runnable = new Runnable() {
 				public void run() {
 					
-					DialogInterface.OnCancelListener onCancelListener = isFixed ? null : new DialogInterface.OnCancelListener() {
+					DialogInterface.OnCancelListener onCancelListener = new DialogInterface.OnCancelListener() {
 						public void onCancel(DialogInterface dialog) {
-							while (!SpinnerDialog.this.spinnerDialogStack.empty()) {
-								SpinnerDialog.this.spinnerDialogStack.pop().dismiss();
+							if (!isFixed) {
+								while (!SpinnerDialog.this.spinnerDialogStack.empty()) {
+									SpinnerDialog.this.spinnerDialogStack.pop().dismiss();
+									callbackContext.success();
+								}
 							}
 						}
 					};
 					
-					ProgressDialog dialog = ProgressDialog
-					.show(cordova.getActivity(), title, message, true, true, onCancelListener);
-					dialog.setCancelable(!isFixed);
+					ProgressDialog dialog;
+					if (isFixed) {
+						dialog = CallbackProgressDialog.show(cordova.getActivity(), title, message, true, false, null, callbackContext);
+					} else {
+						dialog = ProgressDialog.show(cordova.getActivity(), title, message, true, true, onCancelListener);
+					}
 					
 					if (title == null && message == null) {
 						dialog.setContentView(new ProgressBar(cordova.getActivity()));
@@ -69,8 +75,6 @@ public class SpinnerDialog extends CordovaPlugin {
 			this.cordova.getActivity().runOnUiThread(runnable);
 
 		}
-
-		callbackContext.success();
 		return true;
 	}
 
