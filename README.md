@@ -9,6 +9,21 @@ PhoneGap waiting dialog / progress dialog plugin with spinner for Android, iOS a
 or
 ```phonegap local plugin add https://github.com/Paldom/SpinnerDialog.git```
 
+## Methods
+
+- `window.plugins.spinnerDialog.show`
+- `window.plugins.spinnerDialog.hide`
+
+## window.plugins.spinnerDialog.show
+
+
+    window.plugins.spinnerDialog.show([title], [message], [cancelCallback])
+
+- __title__: Spinner title (Android only). Optional. _(String)_
+- __message__: Spinner message. Optional. _(String)_
+- __cancelCallback__: Callback to invoke when spinner cancel event fired (tap or hardware back button event). If set, spinner dialog will be fixed, you should explicitly call `window.plugins.spinnerDialog.hide`. Due to legacy reasons you can provide boolean value (true/false) to set spinner not cancelable. Optional, defaults to `false`. _(Function/Boolean)_
+
+
 ## Supported Platforms
 
 - Android
