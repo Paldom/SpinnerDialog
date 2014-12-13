@@ -19,15 +19,12 @@ public class SpinnerDialog extends CordovaPlugin {
 	public SpinnerDialog() {
 	}
 
-	public boolean execute(String action, JSONArray args,
-			final CallbackContext callbackContext) throws JSONException {
+	public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
 		if (action.equals("show")) {
 
-			final String title = args.getString(0) == "null" ? null : args
-					.getString(0);
-			final String message = args.getString(1) == "null" ? null : args
-					.getString(1);
-            final boolean isFixed = args.getBoolean(2);
+			final String title = "null".equals(args.getString(0)) ? null : args.getString(0);
+			final String message = "null".equals(args.getString(1)) ? null : args.getString(1);
+			final boolean isFixed = args.getBoolean(2);
                 
 			final CordovaInterface cordova = this.cordova;
 			Runnable runnable = new Runnable() {
