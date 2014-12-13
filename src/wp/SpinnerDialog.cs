@@ -1,6 +1,7 @@
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.Windows;
+using System.Windows.Input;
 
 namespace WPCordovaClassLib.Cordova.Commands
 {
@@ -16,10 +17,14 @@ namespace WPCordovaClassLib.Cordova.Commands
             string[] args = JSON.JsonHelper.Deserialize<string[]>(options);
             string title = args[0];
             string message = args[1];
+            string isFixed = args[2];
 
-            if (message == null)
+            if (message == null || "null".Equals(message))
             {
-                message = title;
+                if (title != null && !"null".Equals(title))
+                {
+                    message = title;
+                }
             }
 
             Deployment.Current.Dispatcher.BeginInvoke(() =>
@@ -37,10 +42,21 @@ namespace WPCordovaClassLib.Cordova.Commands
                     page = (Application.Current.RootVisual as PhoneApplicationFrame).Content as PhoneApplicationPage;
                 }
 
+                if (isFixed == null || "false".Equals(isFixed))
+                {
+                    page.MouseLeftButtonUp += ButtonEventHandler;
+                }
+
                 SystemTray.SetProgressIndicator(page, progressIndicator);
 
             });
 
+        }
+
+        private void ButtonEventHandler(object sender, MouseButtonEventArgs e)
+        {
+            hide(null);
+            DispatchCommandResult(new PluginResult(PluginResult.Status.OK));
         }
 
         public void hide(string options)
@@ -51,6 +67,7 @@ namespace WPCordovaClassLib.Cordova.Commands
                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
                     SystemTray.SetProgressIndicator(page, null);
+                    page.MouseLeftButtonUp -= ButtonEventHandler;
                 });
             }
 
