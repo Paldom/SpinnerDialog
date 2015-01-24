@@ -10,6 +10,8 @@ namespace WPCordovaClassLib.Cordova.Commands
 
         private static ProgressIndicator progressIndicator;
         private static PhoneApplicationPage page;
+        private static bool sysTrayVisibilityDetermined;
+        private static bool sysTrayVisible;
 
         public void show(string options)
         {
@@ -49,6 +51,19 @@ namespace WPCordovaClassLib.Cordova.Commands
 
                 SystemTray.SetProgressIndicator(page, progressIndicator);
 
+                // determine systray visibility on first visit
+                if (!sysTrayVisibilityDetermined)
+                {
+                    sysTrayVisible = SystemTray.IsVisible;
+                    sysTrayVisibilityDetermined = true;
+                }
+
+                // show the tray if it's not visible, otherwise the spinner won't show up
+                if (!sysTrayVisible)
+                {
+                    SystemTray.IsVisible = true;
+                }
+
             });
 
         }
@@ -66,6 +81,11 @@ namespace WPCordovaClassLib.Cordova.Commands
             {
                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
+                    if (!sysTrayVisible)
+                    {
+                        SystemTray.IsVisible = false;
+                    }
+
                     SystemTray.SetProgressIndicator(page, null);
                     page.MouseLeftButtonUp -= ButtonEventHandler;
                 });
