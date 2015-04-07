@@ -73,6 +73,9 @@
 - (void) show:(CDVInvokedUrlCommand*)command {
 
     callbackId = command.callbackId;
+    
+    //If there is a loading mask yet we hide it
+    [self hide];
 
     title = [command argumentAtIndex:0];
     message = [command argumentAtIndex:1];
