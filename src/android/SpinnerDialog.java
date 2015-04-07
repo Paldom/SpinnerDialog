@@ -43,16 +43,39 @@ public class SpinnerDialog extends CordovaPlugin {
 					
 					ProgressDialog dialog;
 					if (isFixed) {
-						dialog = CallbackProgressDialog.show(cordova.getActivity(), title, message, true, false, null, callbackContext);
+						//If there is a progressDialog yet change the text
+						if (!SpinnerDialog.this.spinnerDialogStack.empty()) {
+							if (title != null) {
+								SpinnerDialog.this.spinnerDialogStack[SpinnerDialog.this.spinnerDialogStack.length-1].setTitle(title);	
+							}
+							if (message!=null) {
+								SpinnerDialog.this.spinnerDialogStack[SpinnerDialog.this.spinnerDialogStack.length-1].setMessage(message);	
+							}
+						}
+						else{
+							dialog = CallbackProgressDialog.show(cordova.getActivity(), title, message, true, false, null, callbackContext);
+							SpinnerDialog.this.spinnerDialogStack.push(dialog);
+						}
 					} else {
-						dialog = ProgressDialog.show(cordova.getActivity(), title, message, true, true, onCancelListener);
+						//If there is a progressDialog yet change the text
+						if (!SpinnerDialog.this.spinnerDialogStack.empty()) {
+							if (title != null) {
+								SpinnerDialog.this.spinnerDialogStack[SpinnerDialog.this.spinnerDialogStack.length-1].setTitle(title);	
+							}
+							if (message!=null) {
+								SpinnerDialog.this.spinnerDialogStack[SpinnerDialog.this.spinnerDialogStack.length-1].setMessage(message);	
+							}	
+						}
+						else{
+							dialog = ProgressDialog.show(cordova.getActivity(), title, message, true, true, onCancelListener);
+							SpinnerDialog.this.spinnerDialogStack.push(dialog);
+						}
 					}
 					
 					if (title == null && message == null) {
 						dialog.setContentView(new ProgressBar(cordova.getActivity()));
 					}
 					
-					SpinnerDialog.this.spinnerDialogStack.push(dialog);
 
 				}
 			};
@@ -72,6 +95,7 @@ public class SpinnerDialog extends CordovaPlugin {
 			this.cordova.getActivity().runOnUiThread(runnable);
 
 		}
+		
 		return true;
 	}
 
