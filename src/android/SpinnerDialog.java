@@ -45,7 +45,7 @@ public class SpinnerDialog extends CordovaPlugin {
 					if (isFixed) {
 						//If there is a progressDialog yet change the text
 						if (!SpinnerDialog.this.spinnerDialogStack.empty()) {
-							dialog = SpinnerDialog.this.spinnerDialogStack[SpinnerDialog.this.spinnerDialogStack.length-1]; 
+							dialog = SpinnerDialog.this.spinnerDialogStack.peek(); 
 							if (title != null) {
 								dialog.setTitle(title);	
 							}
@@ -60,7 +60,7 @@ public class SpinnerDialog extends CordovaPlugin {
 					} else {
 						//If there is a progressDialog yet change the text
 						if (!SpinnerDialog.this.spinnerDialogStack.empty()) {
-							dialog = SpinnerDialog.this.spinnerDialogStack[SpinnerDialog.this.spinnerDialogStack.length-1]; 
+							dialog = SpinnerDialog.this.spinnerDialogStack.peek(); 
 							if (title != null) {
 								dialog.setTitle(title);	
 							}
