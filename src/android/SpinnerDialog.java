@@ -45,11 +45,12 @@ public class SpinnerDialog extends CordovaPlugin {
 					if (isFixed) {
 						//If there is a progressDialog yet change the text
 						if (!SpinnerDialog.this.spinnerDialogStack.empty()) {
+							dialog = SpinnerDialog.this.spinnerDialogStack[SpinnerDialog.this.spinnerDialogStack.length-1]; 
 							if (title != null) {
-								SpinnerDialog.this.spinnerDialogStack[SpinnerDialog.this.spinnerDialogStack.length-1].setTitle(title);	
+								dialog.setTitle(title);	
 							}
 							if (message!=null) {
-								SpinnerDialog.this.spinnerDialogStack[SpinnerDialog.this.spinnerDialogStack.length-1].setMessage(message);	
+								dialog.setMessage(message);	
 							}
 						}
 						else{
@@ -59,11 +60,12 @@ public class SpinnerDialog extends CordovaPlugin {
 					} else {
 						//If there is a progressDialog yet change the text
 						if (!SpinnerDialog.this.spinnerDialogStack.empty()) {
+							dialog = SpinnerDialog.this.spinnerDialogStack[SpinnerDialog.this.spinnerDialogStack.length-1]; 
 							if (title != null) {
-								SpinnerDialog.this.spinnerDialogStack[SpinnerDialog.this.spinnerDialogStack.length-1].setTitle(title);	
+								dialog.setTitle(title);	
 							}
 							if (message!=null) {
-								SpinnerDialog.this.spinnerDialogStack[SpinnerDialog.this.spinnerDialogStack.length-1].setMessage(message);	
+								dialog.setMessage(message);	
 							}	
 						}
 						else{
