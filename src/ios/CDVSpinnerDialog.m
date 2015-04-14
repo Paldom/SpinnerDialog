@@ -30,7 +30,7 @@
 
 -(CGRect)rectForView {
     //Since ios 8 screen bound are returned correctly
-    return CGRectMake( 0.0f, 0.0f, [[UIScreen mainScreen]bounds].size.width, [UIScreen mainScreen].bounds.size.height);
+    return CGRectMake( 0.0f, 0.0f, [[UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen]bounds].size.width);
 }
 
 - (void)handleTapGesture:(UITapGestureRecognizer *)gesture
