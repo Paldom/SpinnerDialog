@@ -13,6 +13,10 @@
     NSString *title;
     NSString *message;
     NSNumber *isFixed;
+    NSString *alpha;
+    NSString *red;
+    NSString *green;
+    NSString *blue;
 }
 
 @property (nonatomic, retain) UIActivityIndicatorView *indicator;
@@ -49,7 +53,7 @@
 - (UIView *)overlay {
     if (!_overlay) {
         _overlay = [[UIView alloc] initWithFrame:self.rectForView];
-        _overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.35];
+        _overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:[alpha floatValue]];
         _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         _indicator.center = _overlay.center;
         [_indicator startAnimating];
@@ -57,7 +61,7 @@
 
         _messageView = [[UILabel alloc] initWithFrame: self.rectForView];
         [_messageView setText: message == nil ? title : message];
-        [_messageView setTextColor: [UIColor colorWithRed:1 green:1 blue:1 alpha:0.85]];
+        [_messageView setTextColor: [UIColor colorWithRed:[red floatValue] green:[green floatValue] blue:[blue floatValue] alpha:0.85]];
         [_messageView setBackgroundColor: [UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
         [_messageView setTextAlignment: NSTextAlignmentCenter];
          _messageView.center = (CGPoint){_overlay.center.x, _overlay.center.y + 40};
@@ -77,7 +81,11 @@
     title = [command argumentAtIndex:0];
     message = [command argumentAtIndex:1];
     isFixed = [command argumentAtIndex:2];
-
+    alpha = [command argumentAtIndex:3];
+    red = [command argumentAtIndex:4];
+    green = [command argumentAtIndex:5];
+    blue = [command argumentAtIndex:6];
+    
     UIViewController *rootViewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
 
     [rootViewController.view addSubview:self.overlay];
