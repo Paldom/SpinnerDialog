@@ -29,9 +29,12 @@
 @synthesize messageView = _messageView;
 
 -(CGRect)rectForView {
-    if ((NSFoundationVersionNumber <= 1047.25 /* 7.1 */) && UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
-        return CGRectMake( 0.0f, 0.0f, [[UIScreen mainScreen]bounds].size.height, [UIScreen mainScreen].bounds.size.width);
+    /*UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    BOOL landscape = (orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeRight);
+    if(landscape){
+        return CGRectMake( 0.0f, 0.0f, [UIScreen mainScreen].bounds.size.height, [[UIScreen mainScreen]bounds].size.width);
     }
+    return CGRectMake( 0.0f, 0.0f, [[UIScreen mainScreen]bounds].size.width, [UIScreen mainScreen].bounds.size.height);*/
     return CGRectMake( 0.0f, 0.0f, [[UIScreen mainScreen]bounds].size.width, [UIScreen mainScreen].bounds.size.height);
 }
 
@@ -73,6 +76,9 @@
 - (void) show:(CDVInvokedUrlCommand*)command {
 
     callbackId = command.callbackId;
+    
+    //If there is a loading mask yet we hide it
+    [self hide];
 
     title = [command argumentAtIndex:0];
     message = [command argumentAtIndex:1];

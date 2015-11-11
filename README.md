@@ -16,6 +16,9 @@ or ```cordova plugin add https://github.com/Paldom/SpinnerDialog.git```
 Add following to config.xml: ```<gap:plugin name="hu.dpal.phonegap.plugins.spinnerdialog" />```
 or ```<gap:plugin name="hu.dpal.phonegap.plugins.spinnerdialog" source="plugins.cordova.io" />```
 
+## Update 07/04/2015
+Only one spinner dialog can be shown, if there is one yet, text and title will be changed.
+
 ## Methods
 
 - `window.plugins.spinnerDialog.show`

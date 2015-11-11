@@ -43,16 +43,41 @@ public class SpinnerDialog extends CordovaPlugin {
 					
 					ProgressDialog dialog;
 					if (isFixed) {
-						dialog = CallbackProgressDialog.show(cordova.getActivity(), title, message, true, false, null, callbackContext);
+						//If there is a progressDialog yet change the text
+						if (!SpinnerDialog.this.spinnerDialogStack.empty()) {
+							dialog = SpinnerDialog.this.spinnerDialogStack.peek(); 
+							if (title != null) {
+								dialog.setTitle(title);	
+							}
+							if (message!=null) {
+								dialog.setMessage(message);	
+							}
+						}
+						else{
+							dialog = CallbackProgressDialog.show(cordova.getActivity(), title, message, true, false, null, callbackContext);
+							SpinnerDialog.this.spinnerDialogStack.push(dialog);
+						}
 					} else {
-						dialog = ProgressDialog.show(cordova.getActivity(), title, message, true, true, onCancelListener);
+						//If there is a progressDialog yet change the text
+						if (!SpinnerDialog.this.spinnerDialogStack.empty()) {
+							dialog = SpinnerDialog.this.spinnerDialogStack.peek(); 
+							if (title != null) {
+								dialog.setTitle(title);	
+							}
+							if (message!=null) {
+								dialog.setMessage(message);	
+							}	
+						}
+						else{
+							dialog = ProgressDialog.show(cordova.getActivity(), title, message, true, true, onCancelListener);
+							SpinnerDialog.this.spinnerDialogStack.push(dialog);
+						}
 					}
 					
 					if (title == null && message == null) {
 						dialog.setContentView(new ProgressBar(cordova.getActivity()));
 					}
 					
-					SpinnerDialog.this.spinnerDialogStack.push(dialog);
 
 				}
 			};
@@ -72,6 +97,7 @@ public class SpinnerDialog extends CordovaPlugin {
 			this.cordova.getActivity().runOnUiThread(runnable);
 
 		}
+		
 		return true;
 	}
 
