@@ -12,7 +12,7 @@ cordova.commandProxy.add("SpinnerDialog", {
 	    element.style.background = "#000000";
 	    element.style.zIndex = "999999";
 		
-		element.innerHTML = "<progress style=\"position: absolute; top: 50%; left: 50%;transform: translate(-50%, -50%);\"></progress>";
+		element.innerHTML = "<progress class=\"win-ring\" style=\"position: absolute; top: 50%; left: 50%;transform: translate(-50%, -50%);\"></progress>";
 		
 		document.body.appendChild(element);
 	}
