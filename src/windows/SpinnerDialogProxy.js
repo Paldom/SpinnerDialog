@@ -1,5 +1,5 @@
 cordova.commandProxy.add("SpinnerDialog", {
-	show: function (successCallback, errorCallback, params) {
+	createEventWithOptions: function (successCallback, errorCallback, params) {
 		//var msgBox = new Windows.UI.Popups.MessageDialog("prova");
 		//msgBox.showAsync();
 	    var element = element || document.createElement("div");
@@ -11,6 +11,8 @@ cordova.commandProxy.add("SpinnerDialog", {
 	    element.style.filter = "alpha(opacity=50)"; //For IE;
 	    element.style.background = "#000000";
 	    element.style.zIndex = "999999";
+		
+		element.innerHTML = "<progress style=\"position: absolute; top: 50%; left: 50%;transform: translate(-50%, -50%);\"></progress>";
 		
 		document.body.appendChild(element);
 	}
