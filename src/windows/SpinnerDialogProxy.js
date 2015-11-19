@@ -11,5 +11,7 @@ cordova.commandProxy.add("SpinnerDialog", {
 	    element.style.filter = "alpha(opacity=50)"; //For IE;
 	    element.style.background = "#000000";
 	    element.style.zIndex = "999999";
+		
+		document.body.appendChild(element);
 	}
 });
