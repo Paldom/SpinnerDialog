@@ -1,5 +1,6 @@
 cordova.commandProxy.add("SpinnerDialog", {
 	createEventWithOptions: function (successCallback, errorCallback, params) {
-		console.log("prova");
+		var msgBox = new Windows.UI.Popups.MessageDialog("prova");
+		msgBox.showAsync();
 	}
 });
