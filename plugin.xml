@@ -50,6 +50,13 @@
     
     <source-file src="src/wp/SpinnerDialog.cs" />
   </platform>
+  
+  <!-- windows -->
+  <platform name="windows">
+    <js-module src="src/windows/SpinnerDialogProxy.js" name="SpinnerDialogProxy">
+      <merges target="" />
+	</js-module>
+  </platform>
 	
 </plugin>
 
