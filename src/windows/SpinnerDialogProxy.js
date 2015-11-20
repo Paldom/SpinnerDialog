@@ -24,7 +24,9 @@ function addSpinner() {
 	element.setAttribute("id", "SpinnerDialogPlugin");
 	element.style.width = "100%";
 	element.style.height = "100%";
-	element.style.position = "relative";
+	element.style.position = "absolute";
+	element.style.top = "0px";
+	element.style.left = "0px";
 	element.style.opacity = .5; //For real browsers;
 	element.style.filter = "alpha(opacity=50)"; //For IE;
 	element.style.background = "#000000";
