@@ -5,15 +5,17 @@ PhoneGap waiting dialog / progress dialog plugin with spinner for Android, iOS a
 
 ## Installation
 
-Latest stable release: ```phonegap local plugin add hu.dpal.phonegap.plugins.spinnerdialog```  
-or ```cordova plugin add hu.dpal.phonegap.plugins.spinnerdialog```
+Latest stable release: ```phonegap local plugin add cordova-plugin-spinnerdialog```  
+or ```cordova plugin add cordova-plugin-spinnerdialog```
 
 Current state from git: ```phonegap local plugin add https://github.com/Paldom/SpinnerDialog.git```  
 or ```cordova plugin add https://github.com/Paldom/SpinnerDialog.git```
 
 ## Installation - PhoneGap Build 
 
-Add following to config.xml: ```<gap:plugin name="hu.dpal.phonegap.plugins.spinnerdialog" />```
+Add following to config.xml: ```<gap:plugin name="cordova-plugin-spinnerdialog" source="npm" />```
+
+For older versions, use the following: ```<gap:plugin name="hu.dpal.phonegap.plugins.spinnerdialog" />```
 or ```<gap:plugin name="hu.dpal.phonegap.plugins.spinnerdialog" source="plugins.cordova.io" />```
 
 ## Methods
