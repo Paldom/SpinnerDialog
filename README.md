@@ -5,8 +5,8 @@ PhoneGap waiting dialog / progress dialog plugin with spinner for Android, iOS a
 
 ## Installation
 
-Latest stable release: ```phonegap local plugin add cordova-plugin-spinnerdialog```  
-or ```cordova plugin add cordova-plugin-spinnerdialog```
+Latest stable release: ```phonegap local plugin add cordova-plugin-spinner-dialog```  
+or ```cordova plugin add cordova-plugin-spinner-dialog```
 
 Current state from git: ```phonegap local plugin add https://github.com/Paldom/SpinnerDialog.git```  
 or ```cordova plugin add https://github.com/Paldom/SpinnerDialog.git```
