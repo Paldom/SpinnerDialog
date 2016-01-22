@@ -1,7 +1,7 @@
 cordova.commandProxy.add("SpinnerDialog", {
 	show: function (successCallback, errorCallback, params) {
 		if(!document.getElementById("SpinnerDialogPlugin"))
-			addSpinner();
+			addSpinner(params);
 		showSpinner();
 	},
 	hide: function (successCallback, errorCallback, params) {
@@ -19,7 +19,7 @@ function hideSpinner(){
 	if(element) element.style.display = "none";
 };
 
-function addSpinner() {
+function addSpinner(params) {
 	var element = element || document.createElement("div");
 	element.setAttribute("id", "SpinnerDialogPlugin");
 	element.style.width = "100%";
@@ -33,7 +33,7 @@ function addSpinner() {
 	element.style.zIndex = "999999";
 	element.style.display = "none";
 	
-	var progressContainer = element || progressContainer.createElement("div");
+	var progressContainer = progressContainer || document.createElement("div");
 	progressContainer.style.position = "absolute";
 	progressContainer.style.top = "50%";
 	progressContainer.style.left = "50%";
@@ -44,6 +44,7 @@ function addSpinner() {
 	var progressMessage = progressMessage|| document.createElement("div");
 	progressMessage.style.marginTop = "2px;"
 	progressMessage.style.textAlign = "center";
+	progressMessage.style.color = params[3] ? params[3] : "#FFFFFF";
 	progressMessage.innerHTML = params[1] ? params[1] : "";
 	
 	progressContainer.appendChild(progress);
