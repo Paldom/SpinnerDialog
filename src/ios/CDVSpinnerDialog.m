@@ -55,20 +55,28 @@
         _overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.35];
         _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         _indicator.center = _overlay.center;
-        if(color && ![color isEqualToString: @"null"] && ![color isEqualToString: @""]){
+        /*if(color && ![color isEqualToString: @"null"] && ![color isEqualToString: @""]){
             if([color rangeOfString:@"#"].location != NSNotFound){
                 color = [color stringByReplacingOccurrencesOfString:@"#" withString:@""];
             }
             unsigned int baseValue;
             [[NSScanner scannerWithString:color] scanHexInt:&baseValue];
             _indicator.color = UIColorFromRGB(baseValue);
-        }
+        }*/
         [_indicator startAnimating];
         [_overlay addSubview:_indicator];
 
         _messageView = [[UILabel alloc] initWithFrame: self.rectForView];
         [_messageView setText: message == nil ? title : message];
-        [_messageView setTextColor: [UIColor colorWithRed:1 green:1 blue:1 alpha:0.85]];
+        //[_messageView setTextColor: [UIColor colorWithRed:1 green:1 blue:1 alpha:0.85]];
+        if(color && ![color isEqualToString: @"null"] && ![color isEqualToString: @""]){
+            if([color rangeOfString:@"#"].location != NSNotFound){
+                color = [color stringByReplacingOccurrencesOfString:@"#" withString:@""];
+            }
+            unsigned int baseValue;
+            [[NSScanner scannerWithString:color] scanHexInt:&baseValue];
+            [_messageView setTextColor: UIColorFromRGB(baseValue)];
+        }
         [_messageView setBackgroundColor: [UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
         [_messageView setTextAlignment: NSTextAlignmentCenter];
          _messageView.center = (CGPoint){_overlay.center.x, _overlay.center.y + 40};
