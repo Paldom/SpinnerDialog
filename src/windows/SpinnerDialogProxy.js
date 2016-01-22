@@ -33,7 +33,23 @@ function addSpinner() {
 	element.style.zIndex = "999999";
 	element.style.display = "none";
 	
-	element.innerHTML = "<progress class=\"win-ring\" style=\"position: absolute; top: 50%; left: 50%;transform: translate(-50%, -50%);\"></progress>";
+	var progressContainer = element || progressContainer.createElement("div");
+	progressContainer.style.position = "absolute";
+	progressContainer.style.top = "50%";
+	progressContainer.style.left = "50%";
+	progressContainer.style.transform = "translate(-50%, -50%)";
+	
+	var progress = progress || document.createElement("progress");
+	
+	var progressMessage = progressMessage|| document.createElement("div");
+	progressMessage.style.marginTop = "2px;"
+	progressMessage.style.textAlign = "center";
+	
+	progressContainer.appendChild(progress);
+	progressContainer.appendChild(progressMessage);
+	element.appendChild(progressContainer);
+	
+	//element.innerHTML = "<progress class=\"win-ring\" style=\"position: absolute; top: 50%; left: 50%;transform: translate(-50%, -50%);\"></progress>";
 	
 	document.body.appendChild(element);
 };
