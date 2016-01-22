@@ -44,6 +44,7 @@ function addSpinner() {
 	var progressMessage = progressMessage|| document.createElement("div");
 	progressMessage.style.marginTop = "2px;"
 	progressMessage.style.textAlign = "center";
+	progressMessage.innerHTML = params[1] ? params[1] : "";
 	
 	progressContainer.appendChild(progress);
 	progressContainer.appendChild(progressMessage);
