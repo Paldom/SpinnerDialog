@@ -7,12 +7,15 @@
 
 #import "CDVSpinnerDialog.h"
 
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1]
+
 @interface CDVSpinnerDialog () {
     UIActivityIndicatorView *indicator;
     NSString *callbackId;
     NSString *title;
     NSString *message;
     NSNumber *isFixed;
+    NSString *color;
 }
 
 @property (nonatomic, retain) UIActivityIndicatorView *indicator;
@@ -52,6 +55,14 @@
         _overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.35];
         _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         _indicator.center = _overlay.center;
+        if(color && ![color isEqualToString: @"null"] && ![color isEqualToString: @""]){
+            if([color rangeOfString:@"#"].location != NSNotFound){
+                color = [color stringByReplacingOccurrencesOfString:@"#" withString:@""];
+            }
+            unsigned int baseValue;
+            [[NSScanner scannerWithString:color] scanHexInt:&baseValue];
+            _indicator.color = UIColorFromRGB(baseValue);
+        }
         [_indicator startAnimating];
         [_overlay addSubview:_indicator];
 
@@ -77,6 +88,7 @@
     title = [command argumentAtIndex:0];
     message = [command argumentAtIndex:1];
     isFixed = [command argumentAtIndex:2];
+    color = [command argumentAtIndex:3];
 
     UIViewController *rootViewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
 
