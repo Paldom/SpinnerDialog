@@ -61,9 +61,21 @@ or ```<gap:plugin name="hu.dpal.phonegap.plugins.spinnerdialog" source="plugins.
     // Set spinner dialog fixed (cannot be canceled with screen touch or Android hardware button)
     window.plugins.spinnerDialog.show("title","message", true);
     
+    // Overlay opacity and text color options (IOS only)
+    window.plugins.spinnerDialog.show(null,"Message",true, {overlayOpacity: 0.35,  textColorRed: 1, textColorGreen: 1, textColorBlue: 1}); 
+    
+    // Change only overlay opacity (IOS only)
+    window.plugins.spinnerDialog.show(null,"Message",true,{overlayOpacity:0.70});
+    
+    // Change only text color (IOS only)
+    window.plugins.spinnerDialog.show(null,"message",true, { textColorRed: 0.1, textColorGreen: 0.1, textColorBlue: 1});
+    
+    
     // Hide spinner dialog
     window.plugins.spinnerDialog.hide();
-    
+            
+ 
+  
 Note: on Android platform, multiple show calls builds up a stack (LIFO) which means hide will dismiss the last spinner added with show call.
 
 ## License
