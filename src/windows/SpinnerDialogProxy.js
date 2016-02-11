@@ -2,7 +2,10 @@ cordova.commandProxy.add("SpinnerDialog", {
 	show: function (successCallback, errorCallback, params) {
 		if(!document.getElementById("SpinnerDialogPlugin"))
 			addSpinner(params);
-		showSpinner();
+		else {
+			hideSpinner();
+			addSpinner(params);
+		}
 	},
 	hide: function (successCallback, errorCallback, params) {
 		hideSpinner();
@@ -16,7 +19,10 @@ function showSpinner(){
 
 function hideSpinner(){
 	var element = document.getElementById("SpinnerDialogPlugin");
-	if(element) element.style.display = "none";
+	if(element) {
+		//element.style.display = "none";
+		element.parentNode.removeChild(element);
+	}
 };
 
 function addSpinner(params) {
