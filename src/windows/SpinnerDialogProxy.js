@@ -37,7 +37,7 @@ function addSpinner(params) {
 	element.style.filter = "alpha(opacity=50)"; //For IE;
 	element.style.background = "#000000";
 	element.style.zIndex = "999999";
-	element.style.display = "none";
+	//element.style.display = "none";
 	
 	var progressContainer = progressContainer || document.createElement("div");
 	progressContainer.style.position = "absolute";
