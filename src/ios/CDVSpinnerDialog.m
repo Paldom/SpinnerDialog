@@ -80,6 +80,8 @@
         [_messageView setBackgroundColor: [UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
         [_messageView setTextAlignment: NSTextAlignmentCenter];
          _messageView.center = (CGPoint){_overlay.center.x, _overlay.center.y + 40};
+         _messageView.lineBreakMode = NSLineBreakByWordWrapping;
+        _messageView.numberOfLines = 0;
         [_overlay addSubview:_messageView];
 
         UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
