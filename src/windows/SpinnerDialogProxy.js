@@ -35,7 +35,7 @@ function addSpinner(params) {
 	element.style.left = "0px";
 	element.style.opacity = .5; //For real browsers;
 	element.style.filter = "alpha(opacity=50)"; //For IE;
-	element.style.background = "#000000";
+	element.style.background = params[4] ? params[4] : "#000000";
 	element.style.zIndex = "999999";
 	//element.style.display = "none";
 	
