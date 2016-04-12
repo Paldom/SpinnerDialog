@@ -9,6 +9,8 @@
 
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1]
 
+#define UIColorFromRGBOpaque(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:0.65]
+
 @interface CDVSpinnerDialog () {
     UIActivityIndicatorView *indicator;
     NSString *callbackId;
@@ -16,6 +18,7 @@
     NSString *message;
     NSNumber *isFixed;
     NSString *color;
+    NSString *backgorundColor;
 }
 
 @property (nonatomic, retain) UIActivityIndicatorView *indicator;
@@ -52,17 +55,17 @@
 - (UIView *)overlay {
     if (!_overlay) {
         _overlay = [[UIView alloc] initWithFrame:self.rectForView];
-        _overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.65];
         _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         _indicator.center = _overlay.center;
-        /*if(color && ![color isEqualToString: @"null"] && ![color isEqualToString: @""]){
-            if([color rangeOfString:@"#"].location != NSNotFound){
-                color = [color stringByReplacingOccurrencesOfString:@"#" withString:@""];
+        if(backgorundColor && ![backgorundColor isEqualToString: @"null"] && ![backgorundColor isEqualToString: @""]){
+            if([backgorundColor rangeOfString:@"#"].location != NSNotFound){
+                backgorundColor = [backgorundColor stringByReplacingOccurrencesOfString:@"#" withString:@""];
             }
             unsigned int baseValue;
-            [[NSScanner scannerWithString:color] scanHexInt:&baseValue];
-            _indicator.color = UIColorFromRGB(baseValue);
-        }*/
+            [[NSScanner scannerWithString:backgorundColor] scanHexInt:&baseValue];
+            _overlay.backgroundColor = UIColorFromRGBOpaque(baseValue);
+        } else
+            _overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.65];
         [_indicator startAnimating];
         [_overlay addSubview:_indicator];
 
@@ -99,6 +102,7 @@
     message = [command argumentAtIndex:1];
     isFixed = [command argumentAtIndex:2];
     color = [command argumentAtIndex:3];
+    backgorundColor = [command argumentAtIndex:4];
 
     UIViewController *rootViewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
 
