@@ -88,7 +88,7 @@
     
     UIViewController *rootViewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
 
-    [rootViewController.view addSubview:self.overlay];
+    [[self getTopMostViewController].view addSubview:self.overlay];
 
 }
 
@@ -106,6 +106,13 @@
         _messageView = nil;
         _overlay = nil;
     }
+}
+- (UIViewController*) getTopMostViewController {
+    UIViewController *presentingViewController = [[[UIApplication sharedApplication] delegate] window].rootViewController;
+    while (presentingViewController.presentedViewController != nil) {
+        presentingViewController = presentingViewController.presentedViewController;
+    }
+    return presentingViewController;
 }
 
 #pragma mark - PRIVATE METHODS
