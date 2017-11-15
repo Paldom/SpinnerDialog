@@ -86,7 +86,7 @@
     
     //Si hay ya un loading cambiamos el texto
     if (_overlay) {
-        [self.messageView setText: message == nil ? title : message];
+        [_messageView setText: message == nil ? title : message];
     }
     else{//Si no lo mostramos con un fadding
         UIViewController *rootViewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
