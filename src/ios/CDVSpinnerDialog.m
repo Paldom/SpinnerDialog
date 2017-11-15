@@ -60,7 +60,7 @@
 
         _messageView = [[UILabel alloc] initWithFrame: self.rectForView];
         [_messageView setText: message == nil ? title : message];
-        [_messageView setTextColor: [UIColor colorWithRed:0 green:0 blue: alpha:1]];
+        [_messageView setTextColor: [UIColor colorWithRed:0 green:0 blue:0 alpha:1]];
         [_messageView setBackgroundColor: [UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
         [_messageView setTextAlignment: NSTextAlignmentCenter];
          _messageView.center = (CGPoint){_overlay.center.x, _overlay.center.y + 40};
