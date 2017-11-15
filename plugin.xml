@@ -2,7 +2,7 @@
 
 <plugin xmlns="http://cordova.apache.org/ns/plugins/1.0"
            id="hu.dpal.phonegap.plugins.SpinnerDialog3"
-      version="1.3.11">
+      version="1.3.12">
 
     <name>SpinnerDialog</name>
     
