@@ -38,10 +38,6 @@
     return CGRectMake( 0.0f, 0.0f, [[UIScreen mainScreen]bounds].size.width, [UIScreen mainScreen].bounds.size.height);
 }
 
--(CGRect)rectForMessage {
-    return CGRectMake( 0.0f, 0.0f, 500, 150);
-}
-
 - (void)handleTapGesture:(UITapGestureRecognizer *)gesture
 {
     CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
@@ -56,16 +52,16 @@
 - (UIView *)overlay {
     if (!_overlay) {
         _overlay = [[UIView alloc] initWithFrame:self.rectForView];
-        _overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.25];
+        _overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.35];
         _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         _indicator.center = _overlay.center;
         [_indicator startAnimating];
         [_overlay addSubview:_indicator];
 
-        _messageView = [[UILabel alloc] initWithFrame: self.rectForMessage];
+        _messageView = [[UILabel alloc] initWithFrame: self.rectForView];
         [_messageView setText: message == nil ? title : message];
-        [_messageView setTextColor: [UIColor colorWithRed:0 green:0 blue:0 alpha:1]];
-        [_messageView setBackgroundColor: [UIColor colorWithRed:1 green:0 blue:0 alpha:1]];
+        [_messageView setTextColor: [UIColor colorWithRed:1 green:1 blue:1 alpha:0.85]];
+        [_messageView setBackgroundColor: [UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
         [_messageView setTextAlignment: NSTextAlignmentCenter];
          _messageView.center = (CGPoint){_overlay.center.x, _overlay.center.y + 40};
         [_overlay addSubview:_messageView];
@@ -90,7 +86,11 @@
 
     UIViewController *rootViewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
 
+    [self.overlay setAlpha:0.0];
     [rootViewController.view addSubview:self.overlay];
+    [UIView beginAnimations:nil context:nil];
+    [self.overlay setAlpha:1.0];
+    [UIView commitAnimations];
 
 }
 
