@@ -84,11 +84,12 @@
     message = [command argumentAtIndex:1];
     isFixed = [command argumentAtIndex:2];
     
-   /* //Si hay ya un loading cambiamos el texto
+   //Si hay ya un loading cambiamos el texto
     if (_overlay) {
         [_messageView setText: message == nil ? title : message];
+        //[self.messageView setText: message == nil ? title : message];
     }
-    else{//Si no lo mostramos con un fadding*/
+    else{//Si no lo mostramos con un fadding
         UIViewController *rootViewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
 
         [self.overlay setAlpha:0.0];
@@ -96,7 +97,7 @@
         [UIView beginAnimations:nil context:nil];
         [self.overlay setAlpha:1.0];
         [UIView commitAnimations];
-    //}
+    }
 }
 
 - (void) hide:(CDVInvokedUrlCommand*)command {
