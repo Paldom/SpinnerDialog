@@ -52,7 +52,7 @@
 - (UIView *)overlay {
     if (!_overlay) {
         _overlay = [[UIView alloc] initWithFrame:self.rectForView];
-        _overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.35];
+        _overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.15];
         _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         _indicator.center = _overlay.center;
         [_indicator startAnimating];
@@ -60,8 +60,8 @@
 
         _messageView = [[UILabel alloc] initWithFrame: self.rectForView];
         [_messageView setText: message == nil ? title : message];
-        [_messageView setTextColor: [UIColor colorWithRed:1 green:1 blue:1 alpha:0.85]];
-        [_messageView setBackgroundColor: [UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
+        [_messageView setTextColor: [UIColor colorWithRed:0 green:0 blue: alpha:1]];
+        [_messageView setBackgroundColor: [UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
         [_messageView setTextAlignment: NSTextAlignmentCenter];
          _messageView.center = (CGPoint){_overlay.center.x, _overlay.center.y + 40};
         [_overlay addSubview:_messageView];
