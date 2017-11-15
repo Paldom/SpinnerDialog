@@ -78,20 +78,25 @@
     callbackId = command.callbackId;
     
     //If there is a loading mask yet we hide it
-    [self hide];
-
+    //[self hide];
+    
     title = [command argumentAtIndex:0];
     message = [command argumentAtIndex:1];
     isFixed = [command argumentAtIndex:2];
+    
+    //Si hay ya un loading cambiamos el texto
+    if (_overlay) {
+        [self.messageView setText: message == nil ? title : message];
+    }
+    else{//Si no lo mostramos con un fadding
+        UIViewController *rootViewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
 
-    UIViewController *rootViewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
-
-    [self.overlay setAlpha:0.0];
-    [rootViewController.view addSubview:self.overlay];
-    [UIView beginAnimations:nil context:nil];
-    [self.overlay setAlpha:1.0];
-    [UIView commitAnimations];
-
+        [self.overlay setAlpha:0.0];
+        [rootViewController.view addSubview:self.overlay];
+        [UIView beginAnimations:nil context:nil];
+        [self.overlay setAlpha:1.0];
+        [UIView commitAnimations];
+    }
 }
 
 - (void) hide:(CDVInvokedUrlCommand*)command {
