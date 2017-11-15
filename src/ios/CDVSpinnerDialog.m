@@ -38,6 +38,10 @@
     return CGRectMake( 0.0f, 0.0f, [[UIScreen mainScreen]bounds].size.width, [UIScreen mainScreen].bounds.size.height);
 }
 
+-(CGRect)rectForMessage {
+    return CGRectMake( 0.0f, 0.0f, [[UIScreen mainScreen]bounds].size.width/2, 200);
+}
+
 - (void)handleTapGesture:(UITapGestureRecognizer *)gesture
 {
     CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
@@ -58,7 +62,7 @@
         [_indicator startAnimating];
         [_overlay addSubview:_indicator];
 
-        _messageView = [[UILabel alloc] initWithFrame: self.rectForView];
+        _messageView = [[UILabel alloc] initWithFrame: self.rectForMessage];
         [_messageView setText: message == nil ? title : message];
         [_messageView setTextColor: [UIColor colorWithRed:0 green:0 blue:0 alpha:1]];
         [_messageView setBackgroundColor: [UIColor colorWithRed:1 green:0 blue:0 alpha:1]];
