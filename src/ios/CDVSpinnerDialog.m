@@ -39,7 +39,7 @@
 }
 
 -(CGRect)rectForMessage {
-    return CGRectMake( 0.0f, 0.0f, [[UIScreen mainScreen]bounds].size.width/2, 200);
+    return CGRectMake( 0.0f, 0.0f, 500, 150);
 }
 
 - (void)handleTapGesture:(UITapGestureRecognizer *)gesture
@@ -56,7 +56,7 @@
 - (UIView *)overlay {
     if (!_overlay) {
         _overlay = [[UIView alloc] initWithFrame:self.rectForView];
-        _overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.15];
+        _overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.25];
         _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         _indicator.center = _overlay.center;
         [_indicator startAnimating];
